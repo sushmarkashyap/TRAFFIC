@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+    <title>SUSHMA</title>
+  </head>
+  <body>
+    <div class="container">  
+   
+      <h1>TRAFFIC</h1>
+      <h2>RED</h2>
+      <section id="controlRED">
+         <button class="btn btn-success" v-on:click="redonLED">ON</button>
+          <button class="btn btn-danger" v-on:click="redoffLED">OFF</button>
+        </section>
+      <h2>YELLOW</h2>
+      <section id="controlYELLOW">
+         <button class="btn btn-success" v-on:click="yellowonLED">ON</button>
+          <button class="btn btn-danger" v-on:click="yellowoffLED">OFF</button>
+          </section>
+      <h2>GREEN</h2>
+      <section id="controlGREEN">
+         <button class="btn btn-success" v-on:click="greenonLED">ON</button>
+          <button class="btn btn-danger" v-on:click="greenoffLED">OFF</button>
+        </section>
+    </div>  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   <script>
+      var redApp = new Vue({
+      el: '#controlRED',
+      data: {
+        message: 'RED off'
+      },
+      methods: {
+        redonLED: function(){
+          console.log("on was called!");
+          axios.post('/redonpin',{
+            pin:15
+          })
+          .then(function(response){
+            console.log(response.data);})
+          .catch(function(error){
+            console.log(error);
+          });  
+        },
+        redoffLED: function(){
+          console.log("off was called!");
+          axios.post('/redoffpin',{
+            pin:15
+          })
+          .then(function(response){
+            console.log(response.data);})
+          .catch(function(error){
+            console.log(error);
+          });  
+        }
+      }
+    })
+
+      </script>
+    <script>
+      var yellowApp = new Vue({
+      el: '#controlYELLOW',
+      data: {
+        message: 'YELLOW off'
+      },
+      methods: {
+        yellowonLED: function(){
+          console.log("on was called!");
+          axios.post('/yellowonpin',{
+            pin:17
+          })
+          .then(function(response){
+            console.log(response.data);})
+          .catch(function(error){
+            console.log(error);
+          });  
+        },
+        yellowoffLED: function(){
+          console.log("off was called!");
+          axios.post('/yellowoffpin',{
+            pin:17
+          })
+          .then(function(response){
+            console.log(response.data);})
+          .catch(function(error){
+            console.log(error);
+          });  
+        }
+      }
+    })
+
+      </script>
+    <script>
+      var greenApp = new Vue({
+      el: '#controlGREEN',
+      data: {
+        message: 'GREEN off'
+      },
+      methods: {
+        greenonLED: function(){
+          console.log("on was called!");
+          axios.post('/greenonpin',{
+            pin:18
+          })
+          .then(function(response){
+            console.log(response.data);})
+          .catch(function(error){
+            console.log(error);
+          });  
+        },
+        greenoffLED: function(){
+          console.log("off was called!");
+          axios.post('/greenoffpin',{
+            pin:18
+          })
+          .then(function(response){
+            console.log(response.data);})
+          .catch(function(error){
+            console.log(error);
+          });  
+        }
+      }
+    })
+
+      </script>    
+  </body>
+</html>

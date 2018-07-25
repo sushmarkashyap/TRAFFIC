@@ -29,6 +29,10 @@
          <button class="btn btn-success" v-on:click="greenonLED">ON</button>
           <button class="btn btn-danger" v-on:click="greenoffLED">OFF</button>
         </section>
+        <h2>TRAFFIC LIGHT SIMULATION</h2>
+      <section id="controlTRAFFIC">
+         <button class="btn btn-success" v-on:click="trafficonLED">ON</button>
+        </section>
     </div>  
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -136,5 +140,29 @@
     })
 
       </script>    
+    
+    <script>
+      var trafficApp = new Vue({
+      el: '#controlTRAFFIC',
+      data: {
+        message: 'TRAFFIC off'
+      },
+      methods: {
+        trafficonLED: function(){
+          console.log("on was called!");
+          axios.post('/trafficonpin',{
+            r:15, y:17, g:18 
+          })
+          .then(function(response){
+            console.log(response.data);})
+          .catch(function(error){
+            console.log(error);
+          });  
+        }
+      
+        }
+      })
+
+      </script>  
   </body>
 </html>

@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, url_for, request, render_template
 from gpiozero import LED
+import time
 
 app = Flask(__name__)
 
@@ -70,6 +71,35 @@ def greenoffpin():
         return jsonify({"status" :' off.show_ledOFF()' })
     else:
         return jsonify({'status:cant find status'})
+
+@app.route('/trafficonpin', methods=['POST'])
+def trafficonpin():
+    if request.method == 'POST':
+        body=request.get_json()
+        r=LED(body.r)
+        y=LED(body.y)
+        g=LED(body.g)
+        for i in range(0,5):
+            r.on()
+            time.sleep(2)
+            r.off()
+            time.sleep(0.5)
+            y.on()
+            time.sleep(1)
+            y.off()
+            time.sleep(0.5)
+            g.on()
+            time.sleep(2)
+            g.off()
+            time.sleep(0.5)
+            y.on()
+            time.sleep(1)
+            y.off()
+            time.sleep(0.5)
+        return jsonify({"status" : 'on.show_ledON()' })
+    else:
+         return jsonify({'status:cant find status'})
+
 
 if __name__=='__main__':
     app.debug=True

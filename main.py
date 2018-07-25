@@ -76,29 +76,26 @@ def greenoffpin():
 def trafficonpin():
     if request.method == 'POST':
         body=request.get_json()
-        r=LED(body.r)
-        y=LED(body.y)
-        g=LED(body.g)
         for i in range(0,5):
-            r.on()
+            red.on()
             time.sleep(2)
-            r.off()
+            red.off()
             time.sleep(0.5)
-            y.on()
+            yellow.on()
             time.sleep(1)
-            y.off()
+            yellow.off()
             time.sleep(0.5)
-            g.on()
+            green.on()
             time.sleep(2)
-            g.off()
+            green.off()
             time.sleep(0.5)
-            y.on()
+            yellow.on()
             time.sleep(1)
-            y.off()
+            yellow.off()
             time.sleep(0.5)
         return jsonify({"status" : 'on.show_ledON()' })
     else:
-         return jsonify({'status:cant find status'})
+        return jsonify({'status:cant find status'})
 
 
 if __name__=='__main__':
